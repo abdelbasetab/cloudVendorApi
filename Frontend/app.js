@@ -1,8 +1,9 @@
 const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
-//const submit_btn = document.querySelector("#submit_btn");
-const url_login = "http://localhost:8090/api/auth/signin";
+const submit_btn_sign_in = document.querySelector("#submit_btn_sign_in");
+const submit_btn_sign_up = document.querySelector("#submit_btn_sign_up");
+const url_login = "http://localhost:8090/api/auth";
 sign_up_btn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");
 });
@@ -11,88 +12,90 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
 
-//submit_btn.addEventListener("click", submitForm());
-
-// submit todo
-function submitForm() {
-  // Get values from input fields
+submit_btn_sign_in.addEventListener("click", (e) =>{
+  e.preventDefault();
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
-
-  // Create a data object with the values
-  var data = {
-    username: username,
-    password: password,
-  };
-
-  // Make a fetch request to your server (replace 'your-api-endpoint' with the actual endpoint)
-  fetch(url_login, {
-    method: "GET", // or 'GET' depending on your server-side setup
-    mode: "no-cors",
-    //  headers: {
-    //  "Content-Type": "application/json",
-    // },
-    //body: JSON.stringify(data),
+  if (!username || !password) {
+    document.getElementById("errorMessage").innerHTML = "All Field are requierd";
+    return;
+  }
+  fetch(url_login + "/signin", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({username: username, password: password}),
   })
-    .then((response) => console.log(response))
-    .then((responseData) => {
-      // Handle the response from the server
-      console.log("Server response:", responseData);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+      .then(authResponse => {
+        console.log("authResponse: ", authResponse);
+        if (authResponse.status === 200) {
 
-  // Prevent the form from submitting (since we are handling it with JavaScript)
-  return false;
-  /** 
-  console.log("username password");
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
+          return authResponse.json();
+        }
+        else if (authResponse.status === 401) {
+          errorMessage.textcontent = "Accès non autrorisé";
+        }
+        else if (authResponse.status === 404) {
+          errorMessage.textcontent = "Utilisateur non trouvé";
+        } else {
+          errorMessage.textcontent = `Error: ${authResponse.status}`;
+        }
+      })
+      .then(userData => {
+        console.log("userData: ", userData);
+        if (userData) {
+          window.localStorage.setItem("userData", JSON.stringify(userData));
+          window.location.replace = "admin.html";
+        }
+      })
+      .catch(error => console.error(error));
+});
 
-  console.log(username + " " + password);
 
-  // Create a new XMLHttpRequest object
-   var xhr = new XMLHttpRequest();
+submit_btn_sign_up.addEventListener("click", (e) =>{
+  e.preventDefault();
+  var firstName = document.getElementById("firstname").value;
+  var lastName = document.getElementById("lastname").value;
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password_signUp").value;
 
-  // Configure it: POST-request for the login endpoint
-  xhr.open("GET", url_login, true);
+  if (!firstName || !lastName || !password || !email) {
+    document.getElementById("errorMessage").innerHTML = "All Field are requierd";
+    return;
+  }
+  fetch(url_login  + "/signup", {
+    method: "POST",
+   // mode: 'cors',
+    headers: {
+      accept: "application/json",
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({firstName: firstName, lastName: lastName,email: email,
+      password: password}),
+  })
+      .then(authResponse => {
+        console.log("authResponse: ", authResponse);
+        if (authResponse.status === 200) {
 
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-  xhr.send(formData);
-  // Set up a function to handle the response
-  xhr.onload = function () {
-
-    if (xhr.status === 200) {
-      // Successful response, handle it accordingly
-      var response = JSON.parse(xhr.responseText);
-
-      // Check your response and perform actions
-      if (response.success) {
-        // Redirect to a new page or perform any other action
-        window.location.href = "/";
-      } else {
-        // Display an error message
-        document.getElementById("error").style.display = "block";
-      }
-    }
-    */
-}
-
-// Set up a function to handle network errors
-/* xhr.onerror = function () {
-    // Handle the error
-    console.error("Request failed");
-  };
-
-  // Prepare the data to be sent
-/**  var formData =
-    "username=" +
-    encodeURIComponent(username) +
-    "&password=" +
-    encodeURIComponent(password);
-
-  // Send the request
-  xhr.send(formData);
-}*/
+          return authResponse.json();
+        }
+        else if (authResponse.status === 401) {
+          errorMessage.textcontent = "Accès non autrorisé";
+        }
+        else if (authResponse.status === 404) {
+          errorMessage.textcontent = "Utilisateur non trouvé";
+        } else {
+          errorMessage.textcontent = `Error: ${authResponse.status}`;
+        }
+      })
+      .then(userData => {
+        console.log("userData: ", userData);
+        if (userData) {
+          window.localStorage.setItem("userData", JSON.stringify(userData));
+          window.location.replace = "admin.html";
+        }
+      })
+      .catch(error => console.error(error));
+});
