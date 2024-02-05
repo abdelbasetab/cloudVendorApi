@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<?> authenticateUser(UserDto userDto) {
+        System.out.println(userDto);
 
         try{
 
@@ -42,9 +43,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<?> registerUser(UserDto userDto) {
 
+        //todo usernotfound exception custome
+        if (true)
+
+            throw new UserNotFoundException("acvac");
+
+        else
+            return new ResponseEntity<>("ID User Not Found", HttpStatus.NOT_FOUND);
 
 
-        return null;
     }
 
     @Override

@@ -7,7 +7,9 @@ import com.login.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 public class UserController implements UserRest {
@@ -20,28 +22,34 @@ public class UserController implements UserRest {
     @Override
     public ResponseEntity<?> authenticateUser(UserDto userDto) {
 
-
         return userService.authenticateUser(userDto);
+
 
     }
 
     @Override
     public ResponseEntity<?> registerUser(UserDto userDto) {
-        return null;
+
+        // checklist <- todo what can hier happend ? not valid or uncompliete user dto data, handlet with custome controller exception
+
+        //check if the request is valid <-- Todo , already did it with custome exception
+
+            return userService.registerUser(userDto);
+
     }
 
     @Override
     public ResponseEntity<?> getAllUser() {
-        return null;
+        return userService.getAllUser();
     }
 
     @Override
     public ResponseEntity<?> deleteUser(Long id) {
-        return null;
+        return userService.deleteUser(id);
     }
 
     @Override
-    public ResponseEntity<?> updateUser(Long id) {
-        return null;
+    public ResponseEntity<?> updateUser(UserDto userDto) {
+        return userService.updateUser(userDto);
     }
 }

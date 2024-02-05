@@ -10,6 +10,7 @@ public class CustomErrorMessage {
     private String description;
 
     public CustomErrorMessage() {
+
     }
 
     public CustomErrorMessage(int statusCode, LocalDateTime timestamp, String message, String description) {
