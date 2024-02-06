@@ -13,6 +13,8 @@ public interface UserService {
 
     public ResponseEntity<?> authenticateUser( UserDto userDto);
 
+    public ResponseEntity<?> getUserById( Long userId);
+
 
     public ResponseEntity<?> registerUser(UserDto userDto);
 
