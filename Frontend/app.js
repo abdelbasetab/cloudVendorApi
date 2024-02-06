@@ -27,6 +27,7 @@ submit_btn_sign_in.addEventListener("click", (e) =>{
       "Content-type": "application/json",
     },
     body: JSON.stringify({username: username, password: password}),
+
   })
       .then(authResponse => {
         console.log("authResponse: ", authResponse);
@@ -47,7 +48,7 @@ submit_btn_sign_in.addEventListener("click", (e) =>{
         console.log("userData: ", userData);
         if (userData) {
           window.localStorage.setItem("userData", JSON.stringify(userData));
-          window.location.replace = "admin.html";
+          window.location.replace = "home.html";
         }
       })
       .catch(error => console.error(error));
