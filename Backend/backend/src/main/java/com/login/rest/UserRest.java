@@ -17,7 +17,7 @@ public interface UserRest {
 
     @PostMapping("/signin")
 
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody UserDto userDto);
+    public ResponseEntity<?> authenticateUser( @RequestBody UserDto userDto);//@Valid
 
 
     @PostMapping("/signup")

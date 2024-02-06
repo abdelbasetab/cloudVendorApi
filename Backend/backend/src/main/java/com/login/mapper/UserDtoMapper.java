@@ -2,9 +2,10 @@ package com.login.mapper;
 
 import com.login.dto.UserDto;
 import com.login.pojo.User;
-import org.mapstruct.Mapper;
+import org.springframework.context.annotation.Bean;
 
-@Mapper
+
+
 public interface UserDtoMapper {
 
     UserDto UserToUserDto(User user);

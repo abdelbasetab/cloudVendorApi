@@ -1,13 +1,11 @@
 package com.login.restController;
 
 import com.login.dto.UserDto;
-import com.login.pojo.User;
 import com.login.rest.UserRest;
-import com.login.service.UserServiceImpl;
+import com.login.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -15,9 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController implements UserRest {
 
 
-    @Autowired
-    private UserServiceImpl userService;
 
+    private UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public ResponseEntity<?> authenticateUser(UserDto userDto) {
