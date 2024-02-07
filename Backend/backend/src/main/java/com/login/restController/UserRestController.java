@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class UserController implements UserRest {
+public class UserRestController implements UserRest {
 
 
 
     private UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
     }
 

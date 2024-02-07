@@ -24,6 +24,7 @@ import static org.mockito.Mockito.mock;
 class UserServiceImplTest {
 
 
+    //always Spring beans hier need to be mocked
     private final UserRepository userRepository = mock(UserRepository.class);;
 
     private static UserDtoMapper userDtoMapper;
