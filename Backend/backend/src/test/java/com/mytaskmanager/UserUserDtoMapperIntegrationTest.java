@@ -2,22 +2,25 @@ package com.mytaskmanager;
 
 import com.login.dto.UserDto;
 import com.login.mapper.UserDtoMapper;
+import com.login.mapper.UserDtoMapperImpl;
 import com.login.pojo.User;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ContextConfiguration("classpath:applicationContext.xml")
-@SpringBootTest
+
+@SpringBootTest(classes = {UserDtoMapperImpl.class})
 public class UserUserDtoMapperIntegrationTest {
     @Autowired
     UserDtoMapper userDtoMapper;
 
 
     @Test
+    @DisplayName("Mapped User To UserDTO")
     public void givenSourceToDestination_whenMaps_thenCorrect() {
         User user = new User();
         user.setId(1L);
@@ -37,6 +40,7 @@ public class UserUserDtoMapperIntegrationTest {
     }
 
     @Test
+    @DisplayName("Mapped UserDTO To User")
     public void givenDestinationToSource_whenMaps_thenCorrect() {
         UserDto userDto= new UserDto();
 
