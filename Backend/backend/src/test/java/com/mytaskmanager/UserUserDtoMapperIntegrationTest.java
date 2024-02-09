@@ -2,8 +2,8 @@ package com.mytaskmanager;
 
 import com.login.dto.UserDto;
 import com.login.mapper.UserDtoMapper;
-import com.login.mapper.UserDtoMapperImpl;
-import com.login.pojo.User;
+import com.login.mapper.impl.UserDtoMapperImpl;
+import com.login.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

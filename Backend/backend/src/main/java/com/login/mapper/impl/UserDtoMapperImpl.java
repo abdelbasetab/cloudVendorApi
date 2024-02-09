@@ -1,7 +1,8 @@
-package com.login.mapper;
+package com.login.mapper.impl;
 
 import com.login.dto.UserDto;
-import com.login.pojo.User;
+import com.login.mapper.UserDtoMapper;
+import com.login.model.User;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,17 +1,14 @@
 package com.login.service;
 
 import com.login.mapper.UserDtoMapper;
-import com.login.mapper.UserDtoMapperImpl;
-import com.login.pojo.User;
+import com.login.mapper.impl.UserDtoMapperImpl;
+import com.login.model.User;
 import com.login.repository.UserRepository;
+import com.login.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;

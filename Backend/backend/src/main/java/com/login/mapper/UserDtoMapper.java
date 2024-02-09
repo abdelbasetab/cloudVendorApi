@@ -1,9 +1,7 @@
 package com.login.mapper;
 
 import com.login.dto.UserDto;
-import com.login.pojo.User;
-import org.springframework.context.annotation.Bean;
-
+import com.login.model.User;
 
 
 public interface UserDtoMapper {

@@ -1,10 +1,11 @@
-package com.login.service;
+package com.login.service.impl;
 
 import com.login.dto.UserDto;
 import com.login.exception.UserNotFoundException;
 import com.login.mapper.UserDtoMapper;
-import com.login.pojo.User;
+import com.login.model.User;
 import com.login.repository.UserRepository;
+import com.login.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

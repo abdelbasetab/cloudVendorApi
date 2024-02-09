@@ -1,7 +1,7 @@
-package com.login.restController;
+package com.login.controller.impl;
 
+import com.login.controller.UserRest;
 import com.login.dto.UserDto;
-import com.login.rest.UserRest;
 import com.login.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
 package com.login.repository;
 
 
-import com.login.pojo.User;
+import com.login.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
